@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhishek Adhikari — QA Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0e0d;
+    --ink2: #3d3b38;
+    --ink3: #7a7872;
+    --paper: #f5f3ee;
+    --paper2: #eceae4;
+    --paper3: #e0ddd6;
+    --accent: #c94e2f;
+    --accent2: #e8a87c;
+    --green: #2a6b4a;
+    --green-light: #d4ead9;
+    --blue: #1d5fa0;
+    --blue-light: #ddeaf7;
+    --amber: #a06020;
+    --amber-light: #faecd8;
+    --border: rgba(15,14,13,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.2rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a {
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink3);
+    text-decoration: none; transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+  }
+  .hero-left {
+    padding: 5rem 4rem 5rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+    border-right: 1px solid var(--border);
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent);
+    background: rgba(201,78,47,0.08);
+    border: 1px solid rgba(201,78,47,0.2);
+    padding: 6px 14px; border-radius: 2px;
+    margin-bottom: 2rem; width: fit-content;
+  }
+  .hero-tag::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 800; line-height: 1.0;
+    letter-spacing: -0.03em; color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+
+  .hero-desc {
+    font-size: 1.05rem; font-weight: 300; color: var(--ink2);
+    max-width: 420px; line-height: 1.75; margin-bottom: 2.5rem;
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.02em;
+    padding: 14px 28px; border-radius: 2px;
+    background: var(--ink); color: var(--paper);
+    text-decoration: none; border: 1.5px solid var(--ink);
+    transition: all 0.2s; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.02em;
+    padding: 14px 28px; border-radius: 2px;
+    background: transparent; color: var(--ink);
+    text-decoration: none; border: 1.5px solid var(--border);
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--ink); }
+
+  .hero-right {
+    padding: 5rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+    gap: 1.5rem;
+    background: var(--paper2);
+  }
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat-card {
+    background: var(--paper); border: 1px solid var(--border);
+    padding: 1.5rem; border-radius: 4px;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem; font-weight: 800;
+    color: var(--ink); letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 0.8rem; color: var(--ink3); margin-top: 4px; font-weight: 400; }
+
+  .skills-preview {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .skill-chip {
+    font-size: 0.8rem; font-weight: 500;
+    padding: 6px 12px; border-radius: 2px;
+    background: var(--paper3); color: var(--ink2);
+    border: 1px solid var(--border);
+  }
+
+  /* SECTION SHARED */
+  section { padding: 5rem 4rem; }
+  .section-eyebrow {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700; letter-spacing: -0.03em;
+    color: var(--ink); line-height: 1.1;
+    margin-bottom: 3rem;
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--paper); border-top: 1px solid var(--border); }
+  .exp-grid { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 0; border-top: 1px solid var(--border);
+    padding: 2.5rem 0;
+  }
+  .exp-item:last-child { border-bottom: 1px solid var(--border); }
+  .exp-date { font-size: 0.8rem; color: var(--ink3); font-weight: 400; padding-top: 4px; }
+  .exp-body { padding-left: 2rem; border-left: 2px solid var(--paper3); }
+  .exp-company {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  .exp-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--ink); letter-spacing: -0.02em; margin-bottom: 1rem;
+  }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 0.92rem; color: var(--ink2); padding: 4px 0;
+    padding-left: 1.2rem; position: relative; line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent); font-size: 0.85rem;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--paper2); border-top: 1px solid var(--border); }
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .project-card {
+    background: var(--paper); border: 1px solid var(--border);
+    padding: 2rem; border-radius: 4px; position: relative;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .project-card:hover { transform: translateY(-3px); border-color: rgba(201,78,47,0.3); }
+  .project-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 4rem; font-weight: 800; color: var(--paper3);
+    position: absolute; top: 1rem; right: 1.5rem;
+    line-height: 1; pointer-events: none;
+  }
+  .project-tag {
+    display: inline-flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem;
+  }
+  .ptag {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 2px;
+  }
+  .ptag-py { background: #ddeaf7; color: #1d5fa0; }
+  .ptag-test { background: #d4ead9; color: #2a6b4a; }
+  .ptag-excel { background: #faecd8; color: #a06020; }
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 0.8rem; letter-spacing: -0.02em;
+  }
+  .project-desc {
+    font-size: 0.88rem; color: var(--ink2); line-height: 1.65;
+    margin-bottom: 1.2rem;
+  }
+  .project-bullets { list-style: none; }
+  .project-bullets li {
+    font-size: 0.82rem; color: var(--ink3); padding: 2px 0 2px 1rem;
+    position: relative;
+  }
+  .project-bullets li::before {
+    content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
+  }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.82rem; font-weight: 500; color: var(--accent);
+    text-decoration: none; margin-top: 1.2rem;
+    border-bottom: 1px solid transparent; transition: border-color 0.2s;
+  }
+  .project-link:hover { border-bottom-color: var(--accent); }
+
+  /* CERTIFICATIONS */
+  #certifications { background: var(--paper); border-top: 1px solid var(--border); }
+  .certs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .cert-card {
+    border: 1px solid var(--border); padding: 1.5rem;
+    border-radius: 4px; display: flex; gap: 1rem; align-items: flex-start;
+    background: var(--paper);
+  }
+  .cert-icon {
+    width: 44px; height: 44px; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 800;
+    flex-shrink: 0; letter-spacing: -0.02em;
+  }
+  .cert-icon.google { background: var(--blue-light); color: var(--blue); }
+  .cert-icon.uc { background: var(--amber-light); color: var(--amber); }
+  .cert-icon.deloitte { background: var(--green-light); color: var(--green); }
+  .cert-icon.tata { background: rgba(201,78,47,0.1); color: var(--accent); }
+  .cert-body {}
+  .cert-name { font-size: 0.9rem; font-weight: 500; color: var(--ink); line-height: 1.3; margin-bottom: 4px; }
+  .cert-org { font-size: 0.8rem; color: var(--ink3); }
+  .cert-date { font-size: 0.75rem; color: var(--ink3); margin-top: 4px; }
+
+  /* SKILLS */
+  #skills { background: var(--paper2); border-top: 1px solid var(--border); }
+  .skills-sections { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .skill-section {}
+  .skill-section-title {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink3); margin-bottom: 1rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+  }
+  .skill-list { list-style: none; }
+  .skill-list li {
+    font-size: 0.9rem; color: var(--ink2); padding: 6px 0;
+    border-bottom: 1px solid rgba(15,14,13,0.05);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .skill-list li::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  /* CONTACT */
+  #contact {
+    background: var(--ink); color: var(--paper);
+    border-top: none;
+  }
+  #contact .section-eyebrow { color: var(--accent2); }
+  #contact .section-title { color: var(--paper); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact-line { display: flex; align-items: center; gap: 1rem; }
+  .contact-icon {
+    width: 40px; height: 40px; background: rgba(245,243,238,0.08);
+    border: 1px solid rgba(245,243,238,0.15); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-text { font-size: 0.92rem; color: rgba(245,243,238,0.75); }
+  .contact-text strong { color: var(--paper); display: block; font-weight: 500; font-size: 0.85rem; margin-bottom: 2px; }
+  .contact-right {
+    display: flex; flex-direction: column; justify-content: center; gap: 1rem;
+  }
+  .contact-big {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 800; letter-spacing: -0.03em;
+    color: var(--paper); line-height: 1.2; margin-bottom: 1rem;
+  }
+  .contact-desc { font-size: 0.92rem; color: rgba(245,243,238,0.6); line-height: 1.7; }
+  .contact-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 1.5rem; }
+  .badge {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase; padding: 6px 14px; border-radius: 2px;
+    border: 1px solid rgba(245,243,238,0.2); color: rgba(245,243,238,0.75);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); border-top: 1px solid rgba(245,243,238,0.08);
+    padding: 1.5rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer p { font-size: 0.78rem; color: rgba(245,243,238,0.35); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.78rem; color: rgba(245,243,238,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent2); }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { border-top: 1px solid var(--border); }
+    section { padding: 3rem 1.5rem; }
+    .exp-item { grid-template-columns: 1fr; }
+    .exp-body { border-left: none; padding-left: 0; border-top: 2px solid var(--paper3); padding-top: 1rem; margin-top: 0.5rem; }
+    .projects-grid, .certs-grid, .skills-sections, .contact-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">AA<span>.</span></a>
+  <ul>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-tag">Available for Opportunities</div>
+    <h1>Abhishek<br><em>Adhikari</em></h1>
+    <p class="hero-desc">
+      QA Engineer skilled in Manual & Automation Testing with Python, Playwright, and Pytest. BCA graduate with hands-on experience in MIS operations and recruitment analytics.
+    </p>
+    <div class="hero-cta">
+      <a href="mailto:abhishekadhikari509@gmail.com" class="btn-primary">Get in touch ↗</a>
+      <a href="#projects" class="btn-outline">View projects</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-num">6<span>+</span></div>
+        <div class="stat-label">Months of experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Certifications earned</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Major projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="font-size:1.6rem">Remote<span>✓</span></div>
+        <div class="stat-label">Open to remote & relocate</div>
+      </div>
+    </div>
+    <div class="skills-preview">
+      <span class="skill-chip">Python</span>
+      <span class="skill-chip">Playwright</span>
+      <span class="skill-chip">Pytest</span>
+      <span class="skill-chip">MS Excel</span>
+      <span class="skill-chip">SQL</span>
+      <span class="skill-chip">Git & GitHub</span>
+      <span class="skill-chip">STLC / SDLC</span>
+      <span class="skill-chip">Agile</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-eyebrow">Career history</p>
+  <h2 class="section-title">Work Experience</h2>
+  <div class="exp-grid">
+
+    <div class="exp-item fade-up">
+      <div class="exp-date">Nov 2025 — Apr 2026</div>
+      <div class="exp-body">
+        <div class="exp-company">Quess Corp (Client: HT Media Ltd) · Gurugram</div>
+        <div class="exp-title">Recruitment Support Specialist</div>
+        <ul class="exp-bullets">
+          <li>Managed and maintained recruitment MIS reports, hiring trackers, and candidate databases with high accuracy and data integrity.</li>
+          <li>Analysed hiring metrics and monitored KPIs to support data-driven decision-making and workforce planning.</li>
+          <li>Utilized MS Excel and Google Workspace for reporting, documentation, and cross-functional coordination.</li>
+          <li>Streamlined reporting processes and ensured timely completion of documentation, onboarding, and compliance activities.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-date">Jul 2025 — Sep 2025</div>
+      <div class="exp-body">
+        <div class="exp-company">SectorMind · India</div>
+        <div class="exp-title">MIS Intern</div>
+        <ul class="exp-bullets">
+          <li>Performed data collection and analysis to support Management Information Systems operations.</li>
+          <li>Generated reports using MS Excel and other tools to assist in business decision-making.</li>
+          <li>Contributed to data-driven processes and supported operational efficiency improvements.</li>
+          <li>Assisted in streamlining MIS functions while maintaining accuracy and professionalism.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-eyebrow">What I've built</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card fade-up">
+      <div class="project-num">01</div>
+      <div class="project-tag">
+        <span class="ptag ptag-py">Python</span>
+        <span class="ptag ptag-test">Playwright</span>
+        <span class="ptag ptag-test">Pytest</span>
+      </div>
+      <div class="project-name">Login Automation Framework</div>
+      <p class="project-desc">A robust end-to-end automation testing framework using Playwright and Pytest with Page Object Model architecture for scalable, maintainable tests.</p>
+      <ul class="project-bullets">
+        <li>Functional, UI, Validation & Negative Testing</li>
+        <li>Page Object Model (POM) architecture</li>
+        <li>Positive & negative login test scenarios</li>
+        <li>Reusable fixtures and utility functions</li>
+        <li>Git-managed source code with execution reports</li>
+      </ul>
+      <a href="#" class="project-link">View on GitHub ↗</a>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-num">02</div>
+      <div class="project-tag">
+        <span class="ptag ptag-test">Manual Testing</span>
+        <span class="ptag ptag-excel">Excel</span>
+      </div>
+      <div class="project-name">E-Commerce Website Testing</div>
+      <p class="project-desc">Comprehensive manual testing of Login and Registration modules for an e-commerce platform, producing detailed bug reports and test documentation.</p>
+      <ul class="project-bullets">
+        <li>Designed & executed test cases for Login & Registration</li>
+        <li>Functional, UI, Validation & Negative Testing</li>
+        <li>Professional defect reporting & bug documentation</li>
+        <li>Test summary and execution reports in Excel</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <p class="section-eyebrow">Credentials</p>
+  <h2 class="section-title">Certifications</h2>
+  <div class="certs-grid">
+
+    <div class="cert-card fade-up">
+      <div class="cert-icon uc">UC<br>Davis</div>
+      <div class="cert-body">
+        <div class="cert-name">SQL for Data Science</div>
+        <div class="cert-org">University of California, Davis</div>
+        <div class="cert-date">April 2026</div>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up">
+      <div class="cert-icon google">Goo<br>gle</div>
+      <div class="cert-body">
+        <div class="cert-name">Share Data Through the Art of Visualization</div>
+        <div class="cert-org">Google</div>
+        <div class="cert-date">March 2026</div>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up">
+      <div class="cert-icon deloitte">Del<br>oitte</div>
+      <div class="cert-body">
+        <div class="cert-name">Data Analytics Job Simulation</div>
+        <div class="cert-org">Deloitte</div>
+        <div class="cert-date">December 2025</div>
+      </div>
+    </div>
+
+    <div class="cert-card fade-up">
+      <div class="cert-icon tata">Tata</div>
+      <div class="cert-body">
+        <div class="cert-name">Gen AI Powered Data Analytics Job Simulation</div>
+        <div class="cert-org">Tata Consultancy Services</div>
+        <div class="cert-date">December 2025</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-eyebrow">Technical toolkit</p>
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-sections">
+    <div class="skill-section fade-up">
+      <div class="skill-section-title">Testing & QA</div>
+      <ul class="skill-list">
+        <li>Manual Testing</li>
+        <li>Automation Testing</li>
+        <li>Playwright</li>
+        <li>Pytest</li>
+        <li>Page Object Model</li>
+        <li>STLC / SDLC</li>
+        <li>Agile Methodology</li>
+      </ul>
+    </div>
+    <div class="skill-section fade-up">
+      <div class="skill-section-title">Languages & Data</div>
+      <ul class="skill-list">
+        <li>Python</li>
+        <li>SQL</li>
+        <li>C / C++</li>
+        <li>Java</li>
+        <li>HTML / CSS / JavaScript</li>
+        <li>MS Excel (Advanced)</li>
+        <li>Data Structures</li>
+      </ul>
+    </div>
+    <div class="skill-section fade-up">
+      <div class="skill-section-title">Tools & Platforms</div>
+      <ul class="skill-list">
+        <li>Git & GitHub</li>
+        <li>Google Workspace</li>
+        <li>DBMS</li>
+        <li>Cloud Computing</li>
+        <li>MIS Reporting</li>
+        <li>KPI Analysis</li>
+        <li>Defect Tracking</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <p class="section-eyebrow">Say hello</p>
+      <div class="contact-big">Let's work together.</div>
+      <p class="contact-desc">
+        Open to QA Engineering, Python Automation, Data Analytics, and MIS roles — remote, hybrid, on-site, or willing to relocate.
+      </p>
+      <div class="contact-badges">
+        <span class="badge">Remote ✓</span>
+        <span class="badge">Hybrid ✓</span>
+        <span class="badge">On-site ✓</span>
+        <span class="badge">Relocate ✓</span>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="contact-info">
+        <div class="contact-line">
+          <div class="contact-icon">✉</div>
+          <div class="contact-text">
+            <strong>Email</strong>
+            abhishekadhikari509@gmail.com
+          </div>
+        </div>
+        <div class="contact-line">
+          <div class="contact-icon">📞</div>
+          <div class="contact-text">
+            <strong>Phone</strong>
+            +91 879 189 0212
+          </div>
+        </div>
+        <div class="contact-line">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">
+            <strong>Location</strong>
+            India — Open to travel & relocation
+          </div>
+        </div>
+        <div class="contact-line">
+          <div class="contact-icon">🔗</div>
+          <div class="contact-text">
+            <strong>Links</strong>
+            LinkedIn · GitHub
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Abhishek Adhikari. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="mailto:abhishekadhikari509@gmail.com">Email</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">GitHub</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
